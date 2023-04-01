@@ -7,4 +7,86 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resorses\Background.png" />
+    <None Remove="Resorses\Icon.ico" />
+    <None Remove="Resorses\ShapeEmpty.png" />
+    <None Remove="Resorses\ShapeI.png" />
+    <None Remove="Resorses\ShapeJ.png" />
+    <None Remove="Resorses\ShapeL.png" />
+    <None Remove="Resorses\ShapeLI.png" />
+    <None Remove="Resorses\ShapeLJ.png" />
+    <None Remove="Resorses\ShapeLL.png" />
+    <None Remove="Resorses\ShapeLLL.png" />
+    <None Remove="Resorses\ShapeLS.png" />
+    <None Remove="Resorses\ShapeLZ.png" />
+    <None Remove="Resorses\ShapeO.png" />
+    <None Remove="Resorses\ShapeOA.png" />
+    <None Remove="Resorses\ShapeOB.png" />
+    <None Remove="Resorses\ShapeS.png" />
+    <None Remove="Resorses\ShapeT.png" />
+    <None Remove="Resorses\ShapeTA.png" />
+    <None Remove="Resorses\ShapeTB.png" />
+    <None Remove="Resorses\ShapeZ.png" />
+    <None Remove="Resorses\TileEmpty.png" />
+    <None Remove="Resorses\TileI.png" />
+    <None Remove="Resorses\TileJ.png" />
+    <None Remove="Resorses\TileL.png" />
+    <None Remove="Resorses\TileLI.png" />
+    <None Remove="Resorses\TileLJ.png" />
+    <None Remove="Resorses\TileLL.png" />
+    <None Remove="Resorses\TileLLL.png" />
+    <None Remove="Resorses\TileLS.png" />
+    <None Remove="Resorses\TileLZ.png" />
+    <None Remove="Resorses\TileO.png" />
+    <None Remove="Resorses\TileOA.png" />
+    <None Remove="Resorses\TileOB.png" />
+    <None Remove="Resorses\TileS.png" />
+    <None Remove="Resorses\TileT.png" />
+    <None Remove="Resorses\TileTA.png" />
+    <None Remove="Resorses\TileTB.png" />
+    <None Remove="Resorses\TileZ.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resorses\Background.png" />
+    <Resource Include="Resorses\Icon.ico" />
+    <Resource Include="Resorses\ShapeEmpty.png" />
+    <Resource Include="Resorses\ShapeI.png" />
+    <Resource Include="Resorses\ShapeJ.png" />
+    <Resource Include="Resorses\ShapeL.png" />
+    <Resource Include="Resorses\ShapeLI.png" />
+    <Resource Include="Resorses\ShapeLJ.png" />
+    <Resource Include="Resorses\ShapeLL.png" />
+    <Resource Include="Resorses\ShapeLLL.png" />
+    <Resource Include="Resorses\ShapeLS.png" />
+    <Resource Include="Resorses\ShapeLZ.png" />
+    <Resource Include="Resorses\ShapeO.png" />
+    <Resource Include="Resorses\ShapeOA.png" />
+    <Resource Include="Resorses\ShapeOB.png" />
+    <Resource Include="Resorses\ShapeS.png" />
+    <Resource Include="Resorses\ShapeT.png" />
+    <Resource Include="Resorses\ShapeTA.png" />
+    <Resource Include="Resorses\ShapeTB.png" />
+    <Resource Include="Resorses\ShapeZ.png" />
+    <Resource Include="Resorses\TileEmpty.png" />
+    <Resource Include="Resorses\TileI.png" />
+    <Resource Include="Resorses\TileJ.png" />
+    <Resource Include="Resorses\TileL.png" />
+    <Resource Include="Resorses\TileLI.png" />
+    <Resource Include="Resorses\TileLJ.png" />
+    <Resource Include="Resorses\TileLL.png" />
+    <Resource Include="Resorses\TileLLL.png" />
+    <Resource Include="Resorses\TileLS.png" />
+    <Resource Include="Resorses\TileLZ.png" />
+    <Resource Include="Resorses\TileO.png" />
+    <Resource Include="Resorses\TileOA.png" />
+    <Resource Include="Resorses\TileOB.png" />
+    <Resource Include="Resorses\TileS.png" />
+    <Resource Include="Resorses\TileT.png" />
+    <Resource Include="Resorses\TileTA.png" />
+    <Resource Include="Resorses\TileTB.png" />
+    <Resource Include="Resorses\TileZ.png" />
+  </ItemGroup>
+
 </Project>
