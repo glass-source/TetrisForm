@@ -65,10 +65,14 @@ namespace WpfApp1
         };
 
         private readonly Image[,] ImageControls;
+
+        private GameState gameState = new GameState();
         public MainWindow()
         {
             InitializeComponent();
         }
+        
+        //private readonly Image[,] ConstroctorCanvas(Cuadicula cuadicula);
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
