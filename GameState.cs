@@ -24,8 +24,8 @@
             }
         }
 
-        public GameGrid GameGrid { get; }
-        public BlockQueue BlockQueue { get; }
+        public Cuadricula GameGrid { get; }
+        public SecuenciaBloques BlockQueue { get; }
         public bool GameOver { get; private set; }
         public int Score { get; private set; }
         public Block HeldBlock { get; private set; }
@@ -33,8 +33,8 @@
 
         public GameState()
         {
-            GameGrid = new GameGrid(22, 10);
-            BlockQueue = new BlockQueue();
+            GameGrid = new Cuadricula(22, 10);
+            BlockQueue = new SecuenciaBloques();
             CurrentBlock = BlockQueue.GetAndUpdate();
             CanHold = true;
         }
@@ -43,7 +43,7 @@
         {
             foreach (Position p in CurrentBlock.TilePositions())
             {
-                if (!GameGrid.IsEmpty(p.Row, p.Column))
+                if (!GameGrid.vacia(p.Row, p.Column))
                 {
                     return false;
                 }
@@ -116,7 +116,7 @@
 
         private bool IsGameOver()
         {
-            return !(GameGrid.IsRowEmpty(0) && GameGrid.IsRowEmpty(1));
+            return !(GameGrid.Filavacia(0) && GameGrid.Filavacia(1));
         }
 
         private void PlaceBlock()
@@ -126,7 +126,7 @@
                 GameGrid[p.Row, p.Column] = CurrentBlock.Id;
             }
 
-            Score += GameGrid.ClearFullRows();
+            Score += GameGrid.limpiarFilaCompleta();
 
             if (IsGameOver())
             {
@@ -154,7 +154,7 @@
         {
             int drop = 0;
 
-            while (GameGrid.IsEmpty(p.Row + drop + 1, p.Column))
+            while (GameGrid.vacia(p.Row + drop + 1, p.Column))
             {
                 drop++;
             }
@@ -164,7 +164,7 @@
 
         public int BlockDropDistance()
         {
-            int drop = GameGrid.Rows;
+            int drop = GameGrid.Fila();
 
             foreach (Position p in CurrentBlock.TilePositions())
             {

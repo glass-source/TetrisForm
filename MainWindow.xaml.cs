@@ -70,17 +70,132 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            ImageControls = ConstroctorCanvas(gameState.GameGrid);
         }
-        
-        //private readonly Image[,] ConstroctorCanvas(Cuadicula cuadicula);
+
+        private Image[,] ConstroctorCanvas(Cuadricula cuadicula) 
+        {
+            Image[,] Imagenes = new Image[cuadicula.Fila(),cuadicula.Columna()];
+            int TamCeldas = 25;
+            for (int fila = 0; fila < cuadicula.Fila(); fila++)
+            {
+                for (int Colum = 0; Colum < cuadicula.Columna(); Colum++)
+                {
+                    Image imagen = new Image()
+                    {
+                        Width = TamCeldas,
+                        Height = TamCeldas
+
+                    };
+                    Canvas.SetTop(imagen, (fila - 2) * TamCeldas);
+                    Canvas.SetLeft(imagen, Colum*TamCeldas);
+                    GameCanvas.Children.Add(imagen);
+                    Imagenes[fila,Colum]= imagen;
+                }
+            }
+
+            return Imagenes;
+        }
+
+        private async Task loop()
+        {
+            dibujar(gameState);
+            while (!gameState.GameOver)
+            {
+                await Task.Delay(500);
+                gameState.MoveBlockDown();
+                dibujar(gameState);
+            }
+            GameOverMenu.Visibility= Visibility.Visible;
+            FinalScoreText.Text = $"Score: {gameState.Score}";
+        }
+
+        private void DibujarTablero(Cuadricula cuadricula)
+        {
+            for (int fila = 0; fila < cuadricula.Fila(); fila++)
+            {
+                for (int Colum = 0; Colum < cuadricula.Columna(); Colum++)
+                {
+                    int id = cuadricula[fila,Colum];
+                    ImageControls[fila, Colum].Source = Tiles[id];
+                }
+
+            }
+        }
+
+        private void SiguienteBloque(SecuenciaBloques secuencia)
+        {
+            Block siguiente = secuencia.NextBlock;
+            NextImage.Source = Shapes[siguiente.Id];
+        }
+
+        private void DibujarBloque(Block bloque)
+        {
+            foreach (Position posicion in bloque.TilePositions())
+            {
+                ImageControls[posicion.Row, posicion.Column].Source = Tiles[bloque.Id];
+            }
+        }
+
+        private void Held(Block held)
+        {
+            if (held == null)
+            {
+                HoldImage.Source = Shapes[0];
+            }
+        }
+
+        private void dibujar(GameState game)
+        {
+            DibujarTablero(game.GameGrid);
+            DibujarBloque(game.CurrentBlock);
+            SiguienteBloque(game.BlockQueue);
+            ScoreText.Text = $"Score: {game.Score}";
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (gameState.GameOver)
+            {
+                return;
+            }
 
+            switch (e.Key)
+            {
+                case Key.Left:
+                    gameState.MoveBlockLeft(); 
+                    break;
+                case Key.Right:
+                    gameState.MoveBlockRight();
+                    break;
+                case Key.Down:
+                    gameState.MoveBlockDown();
+                    break;
+                case Key.Up:
+                    gameState.RotateBlockCW();
+                    break;
+                case Key.Z:
+                    gameState.RotateBlockCCW();
+                    break;
+                case Key.C:
+                    gameState.HoldBlock();
+                    break;
+                default:
+                    return;
+            }
+            dibujar(gameState);
         }
 
-        private void GameCanvas_Loaded(object sender, KeyEventArgs e)
+        private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
+            await loop();
+        }
+
+        private async void PlayAgain_Click(object sender, RoutedEventArgs e)
+        {
+            gameState = new GameState();
+            GameOverMenu.Visibility=Visibility.Hidden;
+            await loop();
 
         }
     }

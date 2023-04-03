@@ -21,7 +21,14 @@ namespace WpfApp1
         }
 
         //METODOS	
-
+        public int Fila()
+        {
+            return Filas;
+        }
+        public int Columna()
+        {
+            return Columnas;
+        }
         public bool adentro(int r, int c) //Verifica si las filas y las columnas están adentro de la cuadricula o no
         {
             return r >= 0 && r < Filas && c >= 0 && c < Columnas;
@@ -48,7 +55,7 @@ namespace WpfApp1
         {
             for (int c = 0; c < Columnas; c++)
             {
-                if (grid[r, c] != 0)
+                if (cuadricula[r, c] != 0)
                 {
                     return false;
                 }
@@ -62,7 +69,7 @@ namespace WpfApp1
         {
             for (int c = 0; c < Columnas; c++)
             {
-                grid[r, c] = 0;
+                cuadricula[r, c] = 0;
 
             }
         }
@@ -70,8 +77,8 @@ namespace WpfApp1
         {
             for (int c = 0; c < Columnas; c++)
             {
-                grid[r + numFilas, c] = grid[r, c];
-                grid[r, c] = 0;
+                cuadricula[r + numFilas, c] = cuadricula[r, c];
+                cuadricula[r, c] = 0;
             }
         }
         public int limpiarFilaCompleta() // Si la fila se encuentra llena, la eliminará y le sumará 1 a la variable limpiada, se bajará la siguente fila la cantidad de enteros Limpiada existan.
