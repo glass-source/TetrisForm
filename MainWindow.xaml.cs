@@ -22,49 +22,52 @@ namespace WpfApp1
     {
         private readonly ImageSource[] Tiles = new ImageSource[]
         {
-            new BitmapImage(new Uri("Resorse/TileEmpty.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileI.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileJ.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileL.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileO.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileS.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileT.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileZ.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileLI.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileLJ.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileLL.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileLLL.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileOA.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileOB.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileLS.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileTA.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileTB.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/TileLZ.png",UriKind.Relative))
+            new BitmapImage(new Uri("Resorses/TileEmpty.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileI.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileJ.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileL.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileO.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileS.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileT.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileZ.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileLI.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileLJ.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileLL.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileLLL.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileOA.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileOB.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileLS.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileTA.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileTB.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/TileLZ.png",UriKind.Relative))
         };
 
         private readonly ImageSource[] Shapes = new ImageSource[]
         {
-            new BitmapImage(new Uri("Resorse/ShapeEmpty.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeI.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeJ.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeL.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeO.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeS.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeT.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeZ.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeLI.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeLJ.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeLL.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeLLL.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeOA.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeOB.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeLS.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeTA.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeTB.png",UriKind.Relative)),
-            new BitmapImage(new Uri("Resorse/ShapeLZ.png",UriKind.Relative))
+            new BitmapImage(new Uri("Resorses/ShapeEmpty.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeI.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeJ.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeL.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeO.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeS.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeT.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeZ.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeLI.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeLJ.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeLL.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeLLL.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeOA.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeOB.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeLS.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeTA.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeTB.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/ShapeLZ.png",UriKind.Relative))
         };
 
         private readonly Image[,] ImageControls;
+        private readonly int Maxdelay = 1000;
+        private readonly int Mindelay = 75;
+        private readonly int DelayDecrease= 25;
 
         private GameState gameState = new GameState();
         public MainWindow()
@@ -102,6 +105,7 @@ namespace WpfApp1
             dibujar(gameState);
             while (!gameState.GameOver)
             {
+                int delay = Math.Max(Mindelay,Maxdelay-(gameState.Score*DelayDecrease));
                 await Task.Delay(500);
                 gameState.MoveBlockDown();
                 dibujar(gameState);
@@ -117,6 +121,7 @@ namespace WpfApp1
                 for (int Colum = 0; Colum < cuadricula.Columna(); Colum++)
                 {
                     int id = cuadricula[fila,Colum];
+                    ImageControls[fila, Colum].Opacity = 1;
                     ImageControls[fila, Colum].Source = Tiles[id];
                 }
 
@@ -133,7 +138,18 @@ namespace WpfApp1
         {
             foreach (Position posicion in bloque.TilePositions())
             {
+                ImageControls[posicion.Row,posicion.Column].Opacity = 1;
                 ImageControls[posicion.Row, posicion.Column].Source = Tiles[bloque.Id];
+            }
+        }
+
+        private void DibujarBloqueFantasma(Block bloque)
+        {
+            int distancia = gameState.BlockDropDistance();
+            foreach (Position posicion in bloque.TilePositions())
+            {                
+                ImageControls[posicion.Row + distancia, posicion.Column].Source = Tiles[bloque.Id];
+                ImageControls[posicion.Row + distancia, posicion.Column].Opacity = 0.25;
             }
         }
 
@@ -143,11 +159,16 @@ namespace WpfApp1
             {
                 HoldImage.Source = Shapes[0];
             }
+            else
+            {
+                HoldImage.Source = Shapes[held.Id];
+            }
         }
 
         private void dibujar(GameState game)
         {
             DibujarTablero(game.GameGrid);
+            DibujarBloqueFantasma(game.CurrentBlock);
             DibujarBloque(game.CurrentBlock);
             SiguienteBloque(game.BlockQueue);
             ScoreText.Text = $"Score: {game.Score}";
@@ -171,14 +192,17 @@ namespace WpfApp1
                 case Key.Down:
                     gameState.MoveBlockDown();
                     break;
-                case Key.Up:
+                case Key.X:
                     gameState.RotateBlockCW();
                     break;
                 case Key.Z:
                     gameState.RotateBlockCCW();
                     break;
-                case Key.C:
+                case Key.H:
                     gameState.HoldBlock();
+                    break;
+                case Key.Space:
+                    gameState.DropBlock();
                     break;
                 default:
                     return;
