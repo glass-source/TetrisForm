@@ -171,7 +171,9 @@ namespace WpfApp1
             DibujarBloqueFantasma(game.CurrentBlock);
             DibujarBloque(game.CurrentBlock);
             SiguienteBloque(game.BlockQueue);
+            Held(game.HeldBlock);
             ScoreText.Text = $"Score: {game.Score}";
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
