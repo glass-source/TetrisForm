@@ -64,10 +64,18 @@ namespace WpfApp1
             new BitmapImage(new Uri("Resorses/ShapeLZ.png",UriKind.Relative))
         };
 
+        private readonly ImageSource[] Mutes = new ImageSource[]
+        {
+            new BitmapImage(new Uri("Resorses/mute.png",UriKind.Relative)),
+            new BitmapImage(new Uri("Resorses/unmute.png",UriKind.Relative))
+        };
+
         private readonly Image[,] ImageControls;
         private readonly int Maxdelay = 1000;
         private readonly int Mindelay = 75;
         private readonly int DelayDecrease= 25;
+        private bool Startgame = false;
+        private bool Mute = false;
 
         private GameState gameState = new GameState();
         public MainWindow()
@@ -128,6 +136,19 @@ namespace WpfApp1
             }
         }
 
+        private void DibujarTablero(Cuadricula cuadricula, int id)
+        {
+            for (int fila = 0; fila < cuadricula.Fila(); fila++)
+            {
+                for (int Colum = 0; Colum < cuadricula.Columna(); Colum++)
+                {                    
+                    ImageControls[fila, Colum].Opacity = 1;
+                    ImageControls[fila, Colum].Source = Tiles[id];
+                }
+
+            }
+        }
+
         private void SiguienteBloque(SecuenciaBloques secuencia)
         {
             Block siguiente = secuencia.NextBlock;
@@ -165,9 +186,22 @@ namespace WpfApp1
             }
         }
 
+        private void DibujarMute()
+        {
+            if (Mute)
+            {
+                MuteImage.Source = Mutes[0];
+            }
+            else
+            {
+                MuteImage.Source = Mutes[1];
+            }
+            
+        }
         private void dibujar(GameState game)
         {
             DibujarTablero(game.GameGrid);
+            DibujarMute();
             DibujarBloqueFantasma(game.CurrentBlock);
             DibujarBloque(game.CurrentBlock);
             SiguienteBloque(game.BlockQueue);
@@ -182,39 +216,57 @@ namespace WpfApp1
             {
                 return;
             }
-
-            switch (e.Key)
+            if (Startgame)
             {
-                case Key.Left:
-                    gameState.MoveBlockLeft(); 
-                    break;
-                case Key.Right:
-                    gameState.MoveBlockRight();
-                    break;
-                case Key.Down:
-                    gameState.MoveBlockDown();
-                    break;
-                case Key.X:
-                    gameState.RotateBlockCW();
-                    break;
-                case Key.Z:
-                    gameState.RotateBlockCCW();
-                    break;
-                case Key.H:
-                    gameState.HoldBlock();
-                    break;
-                case Key.Space:
-                    gameState.DropBlock();
-                    break;
-                default:
-                    return;
+                switch (e.Key)
+                {
+                    case Key.Left:
+                        gameState.MoveBlockLeft();
+                        break;
+                    case Key.Right:
+                        gameState.MoveBlockRight();
+                        break;
+                    case Key.Down:
+                        gameState.MoveBlockDown();
+                        break;
+                    case Key.X:
+                        gameState.RotateBlockCW();
+                        break;
+                    case Key.Z:
+                        gameState.RotateBlockCCW();
+                        break;
+                    case Key.H:
+                        gameState.HoldBlock();
+                        break;
+                    case Key.Space:
+                        gameState.DropBlock();
+                        break;
+                    case Key.M:
+                        if (Mute)
+                        {
+                            Mute = false;
+                        }
+                        else
+                        {
+                            Mute = true;
+                        }
+                        break;  
+                    default:
+                        return;
+                }
+                dibujar(gameState);
             }
-            dibujar(gameState);
+            
         }
 
         private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            await loop();
+            //while (!Startgame)
+            //{
+            //    
+            //}
+            DibujarTablero(gameState.GameGrid, 0);
+
         }
 
         private async void PlayAgain_Click(object sender, RoutedEventArgs e)
@@ -223,6 +275,13 @@ namespace WpfApp1
             GameOverMenu.Visibility=Visibility.Hidden;
             await loop();
 
+        }
+        private async void Start_Click(object sender, RoutedEventArgs  e)
+        {
+            gameState = new GameState();
+            Startgame = true;
+            GameStar.Visibility=Visibility.Hidden;
+            await loop();
         }
     }
 }
