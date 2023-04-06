@@ -12,7 +12,17 @@ namespace WpfApp1
             new OBlock(),
             new SBlock(),
             new TBlock(),
-            new ZBlock()
+            new ZBlock(),
+            new LIBlock(),
+            new LJBlock(),
+            new LLBlock(),
+            new LLLBlock(),
+            new OABlock(),
+            new ObBlock(),
+            new LSBlock(),
+            new TABlock(),
+            new TbBlock(),
+            new LZBlock()
         };
          
 
