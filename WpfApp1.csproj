@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Resorses\Background.png" />
+    <None Remove="Resorses\Constrols.png" />
     <None Remove="Resorses\Icon.ico" />
     <None Remove="Resorses\mute.png" />
     <None Remove="Resorses\ShapeEmpty.png" />
@@ -52,6 +53,7 @@
 
   <ItemGroup>
     <Resource Include="Resorses\Background.png" />
+    <Resource Include="Resorses\Constrols.png" />
     <Resource Include="Resorses\Icon.ico" />
     <Resource Include="Resorses\mute.png" />
     <Resource Include="Resorses\ShapeEmpty.png" />

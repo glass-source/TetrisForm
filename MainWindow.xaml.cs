@@ -261,10 +261,7 @@ namespace WpfApp1
 
         private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            //while (!Startgame)
-            //{
-            //    
-            //}
+           
             DibujarTablero(gameState.GameGrid, 0);
 
         }
@@ -281,6 +278,10 @@ namespace WpfApp1
             gameState = new GameState();
             Startgame = true;
             GameStar.Visibility=Visibility.Hidden;
+            GameCanvas.Visibility = Visibility.Visible;
+            ScoreText.Visibility=Visibility.Visible;
+            Holdtext.Visibility=Visibility.Visible;
+            Nexttext.Visibility=Visibility.Visible;
             await loop();
         }
     }

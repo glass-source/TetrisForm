@@ -35,15 +35,16 @@
                     Width = "250"
                     Height = "500"
                     ClipToBounds = "True"
-                    Loaded = "GameCanvas_Loaded"/>
+                    Loaded = "GameCanvas_Loaded"
+                    Visibility="Hidden"/>
         </Viewbox>
 
         <TextBlock x:Name = "ScoreText"
                    Grid.Row = "0"
-                   Grid.Column = "1"
-                   Text = "Score"
+                   Grid.Column = "1"                  
                    Margin = "0,10"
-                   TextAlignment = "Center"/>
+                   TextAlignment = "Center"
+                   Visibility="Hidden"/>
 
         <Image x:Name = "MuteImage"
                    Grid.Row = "0"
@@ -61,7 +62,9 @@
                     HorizontalAlignment = "Right">
 
             <TextBlock Text = "Hold"
-                       TextAlignment = "Center"/>
+                       TextAlignment = "Center"
+                       x:Name="Holdtext"
+                       Visibility="Hidden"/>
 
             <Image x:Name = "HoldImage"
                    Margin = "20"
@@ -75,7 +78,9 @@
                     HorizontalAlignment = "Left">
 
             <TextBlock Text = "Next"
-                       TextAlignment = "Center"/>
+                       TextAlignment = "Center"
+                       x:Name="Nexttext"
+                       Visibility="Hidden"/>
 
             <Image x:Name = "NextImage"
                    Margin = "20"
@@ -121,37 +126,22 @@
                            FontSize = "48"
                            TextAlignment = "Center"/>
 
-                
+                <Image Source="Resorses/Constrols.png"
+                       Height="300"
+                       Width="600"
+                       Margin = "0,20,0,0"/>
+
+
 
                 <Button Content = "Start"
-                        Background = "LightGreen"
-                        Margin = "0,150,0,0"
+                        Background = "MediumTurquoise"
+                        Margin = "0,40,0,0"
                         Padding = "5"
-                        Click = "Start_Click"/>
+                        Click = "Start_Click"
+                        Width="150"/>
 
             </StackPanel>
             
-            <StackPanel Grid.Row = "1"
-                    Grid.Column = "0"
-                    VerticalAlignment = "Center"
-                    HorizontalAlignment = "Center"
-                        Margin = "100,0,0,0">
-
-                <TextBlock Text = "Hold"
-                       TextAlignment = "Center"/>
-
-            </StackPanel>
-
-            <StackPanel Grid.Row = "1"
-                    Grid.Column = "2"
-                    VerticalAlignment = "Center"
-                    HorizontalAlignment = "Center"
-                        Margin = "-100,0,0,0">
-
-                <TextBlock Text = "Next"
-                       TextAlignment = "Center"/>
-
-            </StackPanel>
 
         </Grid>
 
