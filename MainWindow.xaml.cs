@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -76,6 +77,7 @@ namespace WpfApp1
         private readonly int DelayDecrease= 25;
         private bool Startgame = false;
         private bool Mute = false;
+        MediaPlayer mediaPlayer = new MediaPlayer();
 
         private GameState gameState = new GameState();
         public MainWindow()
@@ -216,8 +218,10 @@ namespace WpfApp1
             {
                 return;
             }
+           
             if (Startgame)
             {
+                
                 switch (e.Key)
                 {
                     case Key.Left:
@@ -241,16 +245,21 @@ namespace WpfApp1
                     case Key.Space:
                         gameState.DropBlock();
                         break;
+
                     case Key.M:
-                        if (Mute)
-                        {
-                            Mute = false;
+                        
+                        if (Mute == false)
+                        {   
+                            mediaPlayer.Pause();    
+                            Mute = true;
                         }
                         else
                         {
-                            Mute = true;
+                            Mute= false;
+                            mediaPlayer.Play();  
                         }
                         break;  
+
                     default:
                         return;
                 }
@@ -258,6 +267,7 @@ namespace WpfApp1
             }
             
         }
+
 
         private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
@@ -282,6 +292,8 @@ namespace WpfApp1
             ScoreText.Visibility=Visibility.Visible;
             Holdtext.Visibility=Visibility.Visible;
             Nexttext.Visibility=Visibility.Visible;
+            mediaPlayer.Open(new Uri("C:\\Users\\Admin\\Desktop\\Tetris\\Resorses\\Tetris_Song.mp3", UriKind.Relative));
+            mediaPlayer.Play();
             await loop();
         }
     }
