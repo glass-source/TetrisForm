@@ -7,6 +7,7 @@
         public Block CurrentBlock
         {
             get => currentBlock;
+            //Definir accessor method para los valores de los bloques.
             private set
             {
                 currentBlock = value;
