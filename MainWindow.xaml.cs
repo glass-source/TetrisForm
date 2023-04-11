@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.DirectoryServices;
+using System.IO;
 using System.Linq;
 using System.Media;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -83,6 +87,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            mediaPlayer.Open(new Uri(System.IO.Path.GetFullPath("Tetris_Song.mp3"), UriKind.Relative));
             ImageControls = ConstroctorCanvas(gameState.GameGrid);
         }
 
@@ -287,14 +292,14 @@ namespace WpfApp1
         {
             gameState = new GameState();
             Startgame = true;
+            
             GameStar.Visibility=Visibility.Hidden;
             GameCanvas.Visibility = Visibility.Visible;
             ScoreText.Visibility=Visibility.Visible;
             Holdtext.Visibility=Visibility.Visible;
             Nexttext.Visibility=Visibility.Visible;
-            mediaPlayer.Open(new Uri("C:\\Users\\Admin\\Desktop\\Tetris\\Resorses\\Tetris_Song.mp3", UriKind.Relative));
             mediaPlayer.Play();
-            await loop();
+            await loop();     
         }
     }
 }

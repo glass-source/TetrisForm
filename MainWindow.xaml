@@ -46,6 +46,7 @@
                    TextAlignment = "Center"
                    Visibility="Hidden"/>
 
+
         <Image x:Name = "MuteImage"
                    Grid.Row = "0"
                    Grid.Column = "0"                   

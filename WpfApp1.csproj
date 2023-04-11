@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resorses\Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +31,8 @@
     <None Remove="Resorses\ShapeTA.png" />
     <None Remove="Resorses\ShapeTB.png" />
     <None Remove="Resorses\ShapeZ.png" />
+    <None Remove="Resorses\Tetris_Song.mp3" />
+    <None Remove="Resorses\Tetris_Song.wav" />
     <None Remove="Resorses\TileEmpty.png" />
     <None Remove="Resorses\TileI.png" />
     <None Remove="Resorses\TileJ.png" />
@@ -49,6 +52,10 @@
     <None Remove="Resorses\TileTB.png" />
     <None Remove="Resorses\TileZ.png" />
     <None Remove="Resorses\unmute.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resorses\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,6 +81,8 @@
     <Resource Include="Resorses\ShapeTA.png" />
     <Resource Include="Resorses\ShapeTB.png" />
     <Resource Include="Resorses\ShapeZ.png" />
+    <Resource Include="Resorses\Tetris_Song.mp3" />
+    <Resource Include="Resorses\Tetris_Song.wav" />
     <Resource Include="Resorses\TileEmpty.png" />
     <Resource Include="Resorses\TileI.png" />
     <Resource Include="Resorses\TileJ.png" />
