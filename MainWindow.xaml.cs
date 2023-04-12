@@ -117,16 +117,19 @@ namespace WpfApp1
 
         private async Task loop()
         {
-            dibujar(gameState);
-            while (!gameState.GameOver)
+            if (Startgame)
             {
-                int delay = Math.Max(Mindelay,Maxdelay-(gameState.Score*DelayDecrease));
-                await Task.Delay(500);
-                gameState.MoveBlockDown();
                 dibujar(gameState);
-            }
-            GameOverMenu.Visibility= Visibility.Visible;
-            FinalScoreText.Text = $"Score: {gameState.Score}";
+                while (!gameState.GameOver)
+                {
+                    int delay = Math.Max(Mindelay, Maxdelay - (gameState.Score * DelayDecrease));
+                    await Task.Delay(500);
+                    gameState.MoveBlockDown();
+                    dibujar(gameState);
+                }
+                GameOverMenu.Visibility = Visibility.Visible;
+                FinalScoreText.Text = $"Score: {gameState.Score}";
+            }        
         }
 
         private void DibujarTablero(Cuadricula cuadricula)
@@ -247,10 +250,12 @@ namespace WpfApp1
                     case Key.H:
                         gameState.HoldBlock();
                         break;
+                    case Key.R:
+                        gameState = new GameState();
+                        break;
                     case Key.Space:
                         gameState.DropBlock();
-                        break;
-
+                        break;                    
                     case Key.M:
                         
                         if (Mute == false)
@@ -267,9 +272,10 @@ namespace WpfApp1
 
                     default:
                         return;
-                }
+                }               
                 dibujar(gameState);
             }
+
             
         }
 
@@ -290,16 +296,19 @@ namespace WpfApp1
         }
         private async void Start_Click(object sender, RoutedEventArgs  e)
         {
+            
             gameState = new GameState();
             Startgame = true;
-            
-            GameStar.Visibility=Visibility.Hidden;
+
+            GameStar.Visibility = Visibility.Hidden;              
             GameCanvas.Visibility = Visibility.Visible;
-            ScoreText.Visibility=Visibility.Visible;
-            Holdtext.Visibility=Visibility.Visible;
-            Nexttext.Visibility=Visibility.Visible;
-            mediaPlayer.Play();
-            await loop();     
+            ScoreText.Visibility = Visibility.Visible;
+            Message.Visibility = Visibility.Visible;
+            Holdtext.Visibility = Visibility.Visible;
+            Nexttext.Visibility = Visibility.Visible;
+            mediaPlayer.Play();                
+            await loop();
+       
         }
     }
 }
