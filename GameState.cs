@@ -127,7 +127,7 @@
                 GameGrid[p.Row, p.Column] = CurrentBlock.Id;
             }
 
-            Score += GameGrid.limpiarFilaCompleta();
+            Score += GameGrid.limpiarFilaCompleta() * 100;
 
             if (IsGameOver())
             {

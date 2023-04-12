@@ -46,6 +46,23 @@
                    TextAlignment = "Center"
                    Visibility="Hidden"/>
 
+        <TextBlock x:Name = "HighestScoreText"
+                   Text=""
+                   Grid.Row = "1"
+                   Grid.Column = "4"                  
+                   Margin = "0,10"
+                   TextAlignment = "Center"
+                   Visibility="Hidden"/>
+
+        <TextBlock x:Name="Message"
+                   Grid.Row = "0"
+                   Grid.Column = "2"                  
+                   Margin = "0,10"
+                   Text="Presiona R para Reiniciar"
+                   FontSize="20"
+                   TextAlignment = "Center"
+                   Visibility="Hidden"/>
+
 
         <Image x:Name = "MuteImage"
                    Grid.Row = "0"
@@ -104,6 +121,11 @@
                            Text = "Score: "
                            FontSize = "36"
                            TextAlignment = "Center"/>
+                
+                <TextBox x:Name = "UserNameInput"
+                         Text="Ingresa tu nombre aqui"
+                         FontSize = "36"
+                         TextAlignment = "Center"/>
 
                 <Button Content = "Play Again"
                         Background = "LightGreen"
@@ -134,7 +156,8 @@
 
 
 
-                <Button Content = "Start"
+                <Button x:Name="ControlsButton"
+                        Content = "Start"
                         Background = "MediumTurquoise"
                         Margin = "0,40,0,0"
                         Padding = "5"

@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.DirectoryServices;
 using System.IO;
 using System.Linq;
-using System.Media;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
@@ -81,13 +72,14 @@ namespace WpfApp1
         private readonly int DelayDecrease= 25;
         private bool Startgame = false;
         private bool Mute = false;
+        private int highestScore = 0;
         MediaPlayer mediaPlayer = new MediaPlayer();
 
         private GameState gameState = new GameState();
         public MainWindow()
         {
             InitializeComponent();
-            mediaPlayer.Open(new Uri(System.IO.Path.GetFullPath("Tetris_Song.mp3"), UriKind.Relative));
+            mediaPlayer.Open(new Uri("Resorses/Tetris_Song.mp3", UriKind.Relative));
             ImageControls = ConstroctorCanvas(gameState.GameGrid);
         }
 
@@ -117,16 +109,24 @@ namespace WpfApp1
 
         private async Task loop()
         {
-            dibujar(gameState);
-            while (!gameState.GameOver)
+            if (Startgame)
             {
-                int delay = Math.Max(Mindelay,Maxdelay-(gameState.Score*DelayDecrease));
-                await Task.Delay(500);
-                gameState.MoveBlockDown();
                 dibujar(gameState);
-            }
-            GameOverMenu.Visibility= Visibility.Visible;
-            FinalScoreText.Text = $"Score: {gameState.Score}";
+                
+                while (!gameState.GameOver)
+                {
+                    int delay = Math.Max(Mindelay, Maxdelay - (gameState.Score * DelayDecrease));
+                    await Task.Delay(500);
+                    gameState.MoveBlockDown();
+                    dibujar(gameState);
+                }
+                GameOverMenu.Visibility = Visibility.Visible;
+
+                FinalScoreText.Text = $"Score: {gameState.Score}";
+                
+
+
+            }        
         }
 
         private void DibujarTablero(Cuadricula cuadricula)
@@ -247,10 +247,12 @@ namespace WpfApp1
                     case Key.H:
                         gameState.HoldBlock();
                         break;
+                    case Key.R:
+                        gameState = new GameState();
+                        break;
                     case Key.Space:
                         gameState.DropBlock();
-                        break;
-
+                        break;                    
                     case Key.M:
                         
                         if (Mute == false)
@@ -267,9 +269,10 @@ namespace WpfApp1
 
                     default:
                         return;
-                }
+                }               
                 dibujar(gameState);
             }
+
             
         }
 
@@ -283,6 +286,44 @@ namespace WpfApp1
 
         private async void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
+            string userInput = UserNameInput.Text;
+            int finalScore = gameState.Score;
+            string filePath = "Puntaje.txt";
+            List<int> numeros = new List<int>();
+
+            if (!File.Exists(filePath))
+            {
+                using (FileStream fs = File.Create(filePath)){}
+            }
+
+            using (StreamWriter sw = File.AppendText(filePath))
+            {
+                sw.WriteLine("{0}:{1}", userInput, finalScore);
+            }
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    while(!sr.EndOfStream)
+                    {
+                        string linea = sr.ReadLine();
+                        string[] partes = linea.Split(':');
+                        if (partes.Length >= 2 && int.TryParse(partes[1], out int numero))
+                        {
+                            numeros.Add(numero);
+                            highestScore = numeros.Max();
+                            HighestScoreText.Text = "Highest Score: " + highestScore.ToString();
+                        }
+                    }
+                }
+            }
+
+
+
+
+            UserNameInput.Text = "Ingresa tu nombre aqui.";
             gameState = new GameState();
             GameOverMenu.Visibility=Visibility.Hidden;
             await loop();
@@ -290,16 +331,21 @@ namespace WpfApp1
         }
         private async void Start_Click(object sender, RoutedEventArgs  e)
         {
+            
             gameState = new GameState();
             Startgame = true;
-            
-            GameStar.Visibility=Visibility.Hidden;
+
+            GameStar.Visibility = Visibility.Hidden;              
             GameCanvas.Visibility = Visibility.Visible;
-            ScoreText.Visibility=Visibility.Visible;
-            Holdtext.Visibility=Visibility.Visible;
-            Nexttext.Visibility=Visibility.Visible;
-            mediaPlayer.Play();
-            await loop();     
+            ScoreText.Visibility = Visibility.Visible;
+            Message.Visibility = Visibility.Visible;
+            Holdtext.Visibility = Visibility.Visible;
+            Nexttext.Visibility = Visibility.Visible;
+            HighestScoreText.Visibility = Visibility.Visible;
+            HighestScoreText.Text = "Highest Score: " + highestScore.ToString();
+            mediaPlayer.Play();                
+            await loop();
+       
         }
     }
 }
