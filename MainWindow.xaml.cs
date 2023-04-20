@@ -73,6 +73,7 @@ namespace WpfApp1
         private bool Startgame = false;
         private bool Mute = false;
         private int highestScore = 0;
+        private string highestScorePlayer = "";
         MediaPlayer mediaPlayer = new MediaPlayer();
 
         private GameState gameState = new GameState();
@@ -289,7 +290,9 @@ namespace WpfApp1
             string userInput = UserNameInput.Text;
             int finalScore = gameState.Score;
             string filePath = "Puntaje.txt";
+            Dictionary<string, int> puntajes = new Dictionary<string, int>();
             List<int> numeros = new List<int>();
+
 
             if (!File.Exists(filePath))
             {
@@ -310,11 +313,22 @@ namespace WpfApp1
                     {
                         string linea = sr.ReadLine();
                         string[] partes = linea.Split(':');
+                        string name = partes[0];
+
                         if (partes.Length >= 2 && int.TryParse(partes[1], out int numero))
                         {
-                            numeros.Add(numero);
-                            highestScore = numeros.Max();
-                            HighestScoreText.Text = "Highest Score: " + highestScore.ToString();
+                            puntajes.TryAdd(name, numero);
+
+                            foreach (KeyValuePair<string, int> kvp in puntajes)
+                            {
+                                if (kvp.Value > highestScore)
+                                {
+                                    highestScore = kvp.Value;
+                                    highestScorePlayer = kvp.Key;
+                                }
+                            }
+
+                            HighestScoreText.Text = "Jugador: " + name + "\nHighest Score: " + highestScore.ToString();
                         }
                     }
                 }
@@ -338,7 +352,7 @@ namespace WpfApp1
             GameStar.Visibility = Visibility.Hidden;              
             GameCanvas.Visibility = Visibility.Visible;
             ScoreText.Visibility = Visibility.Visible;
-            Message.Visibility = Visibility.Visible;
+            RestartMessage.Visibility = Visibility.Visible;
             Holdtext.Visibility = Visibility.Visible;
             Nexttext.Visibility = Visibility.Visible;
             HighestScoreText.Visibility = Visibility.Visible;
