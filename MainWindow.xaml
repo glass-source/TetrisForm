@@ -121,9 +121,14 @@
                            Text = "Score: "
                            FontSize = "36"
                            TextAlignment = "Center"/>
+
+                <TextBlock x:Name = "Inputmessage"
+                           Text = "Favor ingrese su nombre"
+                           FontSize = "20"
+                           TextAlignment = "Center"/>
                 
                 <TextBox x:Name = "UserNameInput"
-                         Text="Ingresa tu nombre aqui"
+                         Text="Jugador"
                          FontSize = "36"
                          TextAlignment = "Center"/>
 

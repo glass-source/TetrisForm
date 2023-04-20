@@ -80,7 +80,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            mediaPlayer.Open(new Uri("Resorses/Tetris_Song.mp3", UriKind.Relative));
+            mediaPlayer.Open(new Uri("Tetris_Song.mp3", UriKind.Relative));
             ImageControls = ConstroctorCanvas(gameState.GameGrid);
         }
 
@@ -328,7 +328,7 @@ namespace WpfApp1
                                 }
                             }
 
-                            HighestScoreText.Text = "Jugador: " + name + "\nHighest Score: " + highestScore.ToString();
+                            HighestScoreText.Text = "Jugador: " + highestScorePlayer + "\nHighest Score: " + highestScore.ToString();
                         }
                     }
                 }
@@ -337,7 +337,7 @@ namespace WpfApp1
 
 
 
-            UserNameInput.Text = "Ingresa tu nombre aqui.";
+            UserNameInput.Text = "Jugador";
             gameState = new GameState();
             GameOverMenu.Visibility=Visibility.Hidden;
             await loop();
