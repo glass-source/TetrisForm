@@ -75,6 +75,7 @@ namespace WpfApp1
         private int highestScore = 0;
         private string highestScorePlayer = "";
         MediaPlayer mediaPlayer = new MediaPlayer();
+        private int numplayer= 0;
 
         private GameState gameState = new GameState();
         public MainWindow()
@@ -120,6 +121,7 @@ namespace WpfApp1
                     await Task.Delay(500);
                     gameState.MoveBlockDown();
                     dibujar(gameState);
+                    //mediaPlayer.MediaEnded += Repeat_MediEnded;
                 }
                 GameOverMenu.Visibility = Visibility.Visible;
 
@@ -285,6 +287,14 @@ namespace WpfApp1
 
         }
 
+        //void Repeat_MediEnded(object sender, EventArgs e)
+       // {
+            //mediaPlayer.Close();
+            //mediaPlayer.Open(new Uri("Tetris_Song.mp3", UriKind.Relative));
+            //mediaPlayer.Play();
+
+       // }
+
         private async void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
             string userInput = UserNameInput.Text;
@@ -293,10 +303,9 @@ namespace WpfApp1
             Dictionary<string, int> puntajes = new Dictionary<string, int>();
             List<int> numeros = new List<int>();
 
-
             if (!File.Exists(filePath))
             {
-                using (FileStream fs = File.Create(filePath)){}
+                using (FileStream fs = File.Create(filePath)) { }
             }
 
             using (StreamWriter sw = File.AppendText(filePath))
@@ -328,18 +337,21 @@ namespace WpfApp1
                                 }
                             }
 
-                            HighestScoreText.Text = "Jugador: " + highestScorePlayer + "\nHighest Score: " + highestScore.ToString();
+                            HighestScoreText.Text = "Puntaje mas alto: " + highestScore.ToString()+ "\nPor: " + highestScorePlayer;
                         }
                     }
                 }
             }
 
 
+            numplayer += 1;
 
-
-            UserNameInput.Text = "Jugador";
+            UserNameInput.Text = $"Jugador{numplayer}";
             gameState = new GameState();
             GameOverMenu.Visibility=Visibility.Hidden;
+            mediaPlayer.Close();
+            mediaPlayer.Open(new Uri("Tetris_Song.mp3", UriKind.Relative));
+            mediaPlayer.Play();
             await loop();
 
         }
@@ -348,6 +360,13 @@ namespace WpfApp1
             
             gameState = new GameState();
             Startgame = true;
+            string filePath = "Puntaje.txt";
+            Dictionary<string, int> puntajes = new Dictionary<string, int>();
+            List<int> numeros = new List<int>();
+            if (!File.Exists(filePath))
+            {
+                using (FileStream fs = File.Create(filePath)) { }
+            }
 
             GameStar.Visibility = Visibility.Hidden;              
             GameCanvas.Visibility = Visibility.Visible;
@@ -356,8 +375,38 @@ namespace WpfApp1
             Holdtext.Visibility = Visibility.Visible;
             Nexttext.Visibility = Visibility.Visible;
             HighestScoreText.Visibility = Visibility.Visible;
-            HighestScoreText.Text = "Highest Score: " + highestScore.ToString();
-            mediaPlayer.Play();                
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string linea = sr.ReadLine();
+                        string[] partes = linea.Split(':');
+                        string name = partes[0];
+
+                        if (partes.Length >= 2 && int.TryParse(partes[1], out int numero))
+                        {
+                            puntajes.TryAdd(name, numero);
+
+                            foreach (KeyValuePair<string, int> kvp in puntajes)
+                            {
+                                if (kvp.Value > highestScore)
+                                {
+                                    highestScore = kvp.Value;
+                                    highestScorePlayer = kvp.Key;
+                                }
+                            }
+
+                            HighestScoreText.Text = "Puntaje mas alto: " + highestScore.ToString() + "\nPor: " + highestScorePlayer;
+                        }
+                    }
+                }
+            }
+
+            mediaPlayer.Play();
             await loop();
        
         }
